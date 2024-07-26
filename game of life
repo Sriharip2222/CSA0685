@@ -1,0 +1,30 @@
+def game_of_life(board):
+    m, n = len(board), len(board[0])
+    next_board = [[0 for _ in range(n)] for _ in range(m)]
+
+    def count_live_neighbors(i, j):
+        count = 0
+        for x in range(max(i-1, 0), min(i+2, m)):
+            for y in range(max(j-1, 0), min(j+2, n)):
+                count += board[x][y]
+        count -= board[i][j]
+        return count
+
+    for i in range(m):
+        for j in range(n):
+            live_neighbors = count_live_neighbors(i, j)
+            if board[i][j] == 1:
+                if live_neighbors < 2 or live_neighbors > 3:
+                    next_board[i][j] = 0
+                else:
+                    next_board[i][j] = 1
+            else:
+                if live_neighbors == 3:
+                    next_board[i][j] = 1
+
+    return next_board
+
+board1 = [[0,1,0],[0,0,1],[1,1,1],[0,0,0]]
+print(game_of_life(board1))
+board2 = [[1,1],[1,0]]
+print(game_of_life(board2))
