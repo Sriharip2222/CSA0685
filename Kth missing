@@ -1,0 +1,9 @@
+def find_kth_missing(arr, k):
+    missing_set = set(range(1, arr[-1] + k + 1)) - set(arr)
+    return sorted(missing_set)[k - 1]
+arr1 = [2, 3, 4, 7, 11]
+k1 = 5
+print(find_kth_missing(arr1, k1)) 
+arr2 = [1, 2, 3, 4]
+k2 = 2
+print(find_kth_missing(arr2, k2))
