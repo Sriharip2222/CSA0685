@@ -1,0 +1,25 @@
+def assignment_problem_greedy(cost_matrix):
+    num_workers = len(cost_matrix)
+    assignment = []
+    used_tasks = set()
+
+    for worker in range(num_workers):
+        min_cost = float('inf')
+        task = -1
+        for j in range(num_workers):
+            if j not in used_tasks and cost_matrix[worker][j] < min_cost:
+                min_cost = cost_matrix[worker][j]
+                task = j
+        assignment.append((worker, task))
+        used_tasks.add(task)
+
+    total_cost = sum(cost_matrix[worker][task] for worker, task in assignment)
+    return assignment, total_cost
+
+cost_matrix = [[3, 10, 7],
+               [8, 5, 12],
+               [4, 6, 9]]
+optimal_assignment_greedy, total_cost_greedy = assignment_problem_greedy(cost_matrix)
+print("\nTest Case using Greedy Approach:")
+print("Optimal Assignment:", [(f"worker {worker + 1}", f"task {task + 1}") for worker, task in optimal_assignment_greedy])
+print("Total Cost:", total_cost_greedy)
