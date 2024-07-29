@@ -1,0 +1,19 @@
+def knapsack_greedy(weights, values, capacity):
+    n = len(weights)
+    rations = [(values[i] / weights[i], i) for i in range(n)]
+    rations.sort(reverse=True)
+    total_values = 0
+    selected_items = []
+    for ratio, i in rations:
+        if weights[i] <= capacity:
+            total_values += values[i]
+            capacity -= weights[i]
+            selected_items.append(i)
+    return selected_items, total_values
+weight_1 = [2, 3, 4, 5]
+values_1 = [3, 4, 5, 6]
+capacity_1 = 8
+optimal_selection_1_greedy, total_value_1_greedy = knapsack_greedy(weight_1, values_1, capacity_1)
+print("\nTest case greedy algorithm")
+print("Optimal selection:", optimal_selection_1_greedy)
+print("Total value:", total_value_1_greedy)
