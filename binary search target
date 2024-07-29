@@ -1,0 +1,19 @@
+def binary_search(arr, target):
+    low = 0
+    high = len(arr) - 1
+
+    while low <= high:
+        mid = (low + high) // 2
+
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            low = mid + 1
+        else:
+            high = mid - 1
+
+    return -1  # Element not found
+
+arr1 = [3, 9, 14, 19, 25, 31, 42, 47, 53]
+target1 = 31
+print(binary_search(arr1, target1))  # Output: 5
