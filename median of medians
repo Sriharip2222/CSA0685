@@ -1,0 +1,30 @@
+def median_of_medians(arr, k):
+    if len(arr) == 1:
+        return arr[0]
+    
+    groups = [arr[i:i+5] for i in range(0, len(arr), 5)]
+    medians = [sorted(group)[len(group)//2] for group in groups]
+    
+    pivot = median_of_medians(medians, len(medians)//2)
+    
+    low = [x for x in arr if x < pivot]
+    high = [x for x in arr if x > pivot]
+    
+    if k < len(low):
+        return median_of_medians(low, k)
+    elif k > len(arr) - len(high):
+        return median_of_medians(high, k - (len(arr) - len(high)))
+    else:
+        return pivot
+
+arr1 = [12, 3, 5, 7, 19]
+k1 = 2
+print(median_of_medians(arr1, k1)) 
+
+arr2 = [12, 3, 5, 7, 4, 19, 26]
+k2 = 3
+print(median_of_medians(arr2, k2))
+
+arr3 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+k3 = 6
+print(median_of_medians(arr3, k3))
