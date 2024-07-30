@@ -1,0 +1,8 @@
+def find_max_min(arr):
+    max_val = max(arr)
+    min_val = min(arr)
+    return min_val, max_val
+
+arr = [5, 7, 3, 4, 9, 12, 6, 2]
+min_val, max_val = find_max_min(arr)
+print(f"min={min_val}, max={max_val}")
