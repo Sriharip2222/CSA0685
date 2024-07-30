@@ -1,0 +1,29 @@
+def meet_in_the_middle(arr, E):
+    n = len(arr)
+    half = n // 2
+
+    left_half = arr[:half]
+    right_half = arr[half:]
+
+    left_sums = {0}
+    right_sums = {0}
+
+    for i in range(1, 1 << len(left_half)):
+        left_sums |= {sum(left_half[j] for j in range(len(left_half)) if i & 1 << j)}
+
+    for i in range(1, 1 << len(right_half)):
+        right_sums |= {sum(right_half[j] for j in range(len(right_half)) if i & 1 << j)}
+
+    for sum_left in left_sums:
+        if E - sum_left in right_sums:
+            return True
+
+    return False
+
+arr1 = [1, 3, 9, 2, 7, 12]
+E1 = 15# 
+print(meet_in_the_middle(arr1, E1)) 
+
+arr2 = [3, 34, 4, 12, 5, 2]
+E2 = 15
+print(meet_in_the_middle(arr2, E2)) 
