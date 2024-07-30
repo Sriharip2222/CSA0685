@@ -12,8 +12,7 @@ def binary_search(arr, target):
         else:
             high = mid - 1
 
-    return -1  # Element not found
-
+    return -1 
 arr1 = [3, 9, 14, 19, 25, 31, 42, 47, 53]
 target1 = 31
 print(binary_search(arr1, target1))
