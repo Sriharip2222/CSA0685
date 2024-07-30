@@ -1,0 +1,25 @@
+from itertools import combinations
+
+def meet_in_the_middle_alt(arr, target):
+    n = len(arr)
+    half = n // 2
+    left_half = arr[:half]
+    right_half = arr[half:]
+
+    left_sums = {sum(comb) for i in range(len(left_half) + 1) for comb in combinations(left_half, i)}
+    right_sums = {sum(comb) for i in range(len(right_half) + 1) for comb in combinations(right_half, i)}
+
+    closest_sum = float('inf')
+    closest_subset = None
+
+    for left_sum in left_sums:
+        for right_sum in right_sums:
+            total = left_sum + right_sum
+            if abs(target - total) < abs(target - closest_sum):
+                closest_sum = total
+                closest_subset = (left_sum, right_sum)
+
+    return closest_subset
+
+print("Closest subset for set1 (Alternative Approach):", meet_in_the_middle_alt(set1, target_sum1))
+print("Closest subset for set2 (Alternative Approach):", meet_in_the_middle_alt(set2, target_sum2))
