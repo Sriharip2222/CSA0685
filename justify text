@@ -1,0 +1,29 @@
+def justify_text(words, max_width):
+    result = []
+    line = []
+    line_length = 0
+    
+    for word in words:
+        if line_length + len(word) + len(line) > max_width:
+            for i in range(max_width - line_length):
+                line[i % (len(line) - 1 or 1)] += ' '
+            result.append(''.join(line))
+            line = []
+            line_length = 0
+        
+        line.append(word)
+        line_length += len(word)
+    
+    result.append(' '.join(line).ljust(max_width))
+    
+    return result
+
+words1 = ["This", "is", "an", "example", "of", "text", "justification."]
+maxWidth1 = 16
+output1 = justify_text(words1, maxWidth1)
+print(output1)
+
+words2 = ["What", "must", "be", "acknowledgment", "shall", "be"]
+maxWidth2 = 16
+output2 = justify_text(words2, maxWidth2)
+print(output2)
