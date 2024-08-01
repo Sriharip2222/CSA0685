@@ -1,0 +1,18 @@
+import itertools
+def calculate_min_path_distance(matrix):
+    min_distance = float('inf')
+    for path in itertools.permutations(range(len(matrix))):
+        distance = sum(matrix[path[i]][path[i + 1]] for i in range(len(matrix) - 1))
+distance += matrix[path[-1]][path[0]]
+                min_distance = min(min_distance, distance)
+        
+    return min_distance
+matrix1 = [
+    [0, 10, 15, 20],
+    [10, 0, 35, 25],
+    [15, 35, 0, 30],
+    [20, 25, 30, 0]
+]
+
+output1 = calculate_min_path_distance(matrix1)
+print(output1) 
